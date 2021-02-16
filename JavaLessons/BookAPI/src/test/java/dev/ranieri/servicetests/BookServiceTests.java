@@ -6,6 +6,7 @@ import dev.ranieri.services.BookService;
 import dev.ranieri.services.BookServiceImpl;
 import org.junit.jupiter.api.*;
 
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class BookServiceTests {
 
@@ -38,5 +39,6 @@ public class BookServiceTests {
         // seconds in week it would be 604,800
         System.out.println(book);
         Assertions.assertEquals(System.currentTimeMillis()/1000 +604_800, book.getReturnDate(),100);
+
     }
 }

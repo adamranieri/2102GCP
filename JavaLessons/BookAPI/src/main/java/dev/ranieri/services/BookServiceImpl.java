@@ -3,6 +3,8 @@ package dev.ranieri.services;
 import dev.ranieri.daos.BookDAO;
 import dev.ranieri.entities.Book;
 
+import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 public class BookServiceImpl implements  BookService{
@@ -28,18 +30,27 @@ public class BookServiceImpl implements  BookService{
 
     @Override
     public Set<Book> getAllBooks() {
-        return null;
+        return this.bdao.getAllBooks();
     }
 
     @Override
     public Set<Book> getBooksByTitle(String title) {
-        return null;
+        Set<Book> allBooks = this.bdao.getAllBooks();
+        Set<Book> selectedBooks = new HashSet<Book>();
+
+        for(Book b : allBooks){
+            if(b.getTitle().toLowerCase().contains(title.toLowerCase())){
+                selectedBooks.add(b);
+            }
+        }
+
+        return selectedBooks;
     }
 
 
     @Override
     public Book getBookById(int id) {
-        return null;
+        return this.bdao.getBookById(id);
     }
 
     @Override
@@ -64,6 +75,6 @@ public class BookServiceImpl implements  BookService{
 
     @Override
     public boolean deleteBookById(int id) {
-        return false;
+        return this.bdao.deleteBookById(id);
     }
 }

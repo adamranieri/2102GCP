@@ -24,6 +24,7 @@ public class BookDaoTest {
         System.out.println(angelasAshes); // the id should NOT be zero
         testBook = angelasAshes;
         Assertions.assertNotEquals(0,angelasAshes.getBookId());
+
     }
 
     @Test
