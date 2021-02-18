@@ -2,12 +2,16 @@ package dev.ranieri.services;
 
 import dev.ranieri.daos.BookDAO;
 import dev.ranieri.entities.Book;
+import org.apache.log4j.Logger;
 
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
 public class BookServiceImpl implements  BookService{
+
+    private static Logger logger = Logger.getLogger(BookServiceImpl.class.getName()); // when the logger writes
+    // it will say what class the log was from
 
     // Our service is going to need a dao to get and save books
     // BookDAO is a dependency
@@ -61,11 +65,13 @@ public class BookServiceImpl implements  BookService{
         //this if statement is essenitally seeing if the book was checked out
         if(oldBook.isAvailable() == true && book.isAvailable() == false){
             book.setReturnDate(System.currentTimeMillis()/1000 +604_800);
+            logger.info("the book with id " +book.getBookId() +" was checked out" );
         }
 
         // this if statement essentially seeing if the book was being checked in
         if(oldBook.isAvailable() == false && book.isAvailable() == true){
             book.setReturnDate(0);
+            logger.info("the book with id " +book.getBookId() +" was checked in" );
         }
 
         this.bdao.updateBook(book);

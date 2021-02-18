@@ -2,6 +2,7 @@ package dev.ranieri.controllers;
 
 import com.google.gson.Gson;
 import dev.ranieri.daos.BookDaoLocal;
+import dev.ranieri.daos.BookDaoPostgres;
 import dev.ranieri.entities.Book;
 import dev.ranieri.services.BookService;
 import dev.ranieri.services.BookServiceImpl;
@@ -14,7 +15,7 @@ import java.util.Set;
 // Controllers should call services to perform the actions
 public class BookController {
 
-    private BookService bookService = new BookServiceImpl(new BookDaoLocal());
+    private BookService bookService = new BookServiceImpl(new BookDaoPostgres());
 
     public Handler getAllBooksHandler = (ctx) ->{
             String t = ctx.queryParam("titleContains","NONE");// second value is default value
@@ -55,7 +56,8 @@ public class BookController {
         Gson gson = new Gson();
         Book book = gson.fromJson(body,Book.class);// turn that Book JSON into a Java Book Object
         this.bookService.registerBook(book);
-        ctx.result("You created a new book!!");
+        String json = gson.toJson(book);
+        ctx.result(json);
         ctx.status(201);
     };
 

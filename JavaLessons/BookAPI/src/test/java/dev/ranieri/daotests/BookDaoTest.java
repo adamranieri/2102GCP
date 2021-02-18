@@ -2,6 +2,7 @@ package dev.ranieri.daotests;
 
 import dev.ranieri.daos.BookDAO;
 import dev.ranieri.daos.BookDaoLocal;
+import dev.ranieri.daos.BookDaoPostgres;
 import dev.ranieri.entities.Book;
 import org.junit.jupiter.api.*;
 
@@ -11,7 +12,7 @@ import java.util.Set;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class BookDaoTest {
 
-    private static BookDAO bdao = new BookDaoLocal();
+    private static BookDAO bdao = new BookDaoPostgres();
     private static Book testBook = null;
 
     @Test
@@ -19,7 +20,7 @@ public class BookDaoTest {
     void create_book(){
         // Anytime a book has an ID of zero it menas that is is not saved or persisted somewhere
         // Software convention
-        Book angelasAshes = new Book(0, "Angela's Ashes", "Frank McCourt",2,true,0);
+        Book angelasAshes = new Book(0, "Angelas Ashes", "Frank McCourt",2,true,0);
         bdao.createBook(angelasAshes); // save or persist
         System.out.println(angelasAshes); // the id should NOT be zero
         testBook = angelasAshes;
