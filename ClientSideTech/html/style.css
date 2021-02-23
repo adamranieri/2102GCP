@@ -1,0 +1,35 @@
+td{
+    color: chartreuse;
+}
+
+/* classes can be reused */
+h4.subtitle{
+    color: chocolate;
+}
+
+h3.subtitle{
+    color: darkorchid;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 0.4fr 1.8fr 0.6fr 1.8fr 0.4fr;
+    grid-template-rows: 1fr 0.3fr 2.3fr 0.2fr 1.2fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      ". introHeadings introHeadings introHeadings ."
+      ". . . . ."
+      ". natlChampTable . heismanList ."
+      ". . . . ."
+      ". . . . .";
+  }
+  
+  .natlChampTable { grid-area: natlChampTable; }
+  
+  .heismanList { grid-area: heismanList; }
+  
+  .introHeadings { 
+      grid-area: introHeadings;
+    text-align: center; 
+}
+  
