@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Manipulation</title>
+</head>
+<body>
+
+    <!-- inline JS -->
+    <button onclick="sayHello()">Hello!!!</button> 
+    <p id="helloPara"></p>
+
+    <!-- event listener -->
+    <button id="holaBtn">Hola!!!</button>
+    <input id="holaInput" type="text">
+    <p id="holaPara"></p>
+    
+</body>
+<script>
+    let showPara = false
+
+    function sayHello(){
+        console.log("hello")    
+        const helloPara = document.getElementById("helloPara");
+        if(!showPara){
+            helloPara.innerHTML = 'You clicked the hello button!!!!'
+            showPara = !showPara;
+        }else{
+            helloPara.innerHTML ='';
+            showPara = !showPara;
+        }  
+        
+    }
+
+    function hola(){
+        console.log("Hola")
+        const holaInput = document.getElementById("holaInput");
+        const name = holaInput.value;
+        const holaPara = document.getElementById("holaPara");
+        holaPara.innerHTML = "Hola " + name
+    }
+
+    // attach an event listener
+    const holaBtn = document.getElementById("holaBtn")
+    // if you click on the holaBtn element it will execute the hola function
+    // the most common callback in JS
+    // by attaching an event listener to an element in the dom
+    // you instruct JS to listen for an event on that element
+    // then execute a function when that event happens
+    // element we are watching is the holaBtn
+    // the event is click
+    // code we want to execute is the hola function
+    holaBtn.addEventListener("click",hola);
+
+</script>
+</html>
