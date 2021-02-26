@@ -35,6 +35,7 @@
 
     <div class="bookHeading">
     <h1>Community Libray Book Manager</h1>
+    <button onclick="login()">Login honor system for managers</button>
     </div>  
 
     <div class="bookTable">
@@ -74,6 +75,7 @@
     const titleInput = document.getElementById("titleInput");
     const authorInput = document.getElementById("authorInput");
     const conditionInput = document.getElementById("conditionInput");
+
 
     getAllBooks();
 
@@ -126,13 +128,29 @@
 
     async function deleteBookById(id = 0){
         
+        const jwt = localStorage.getItem('jwt');
         const details = {
-            method:"DELETE"
+            method:"DELETE",
+            headers:{
+                "Authorization": jwt
+            }
         }
 
         const httpResponse = await fetch(`http://localhost:7000/books/${id}`,details)
         getAllBooks();
 
+    }
+
+    async function login(){
+
+        const details ={
+            method: 'POST'
+        }
+        
+        const httpResponse = await fetch("http://localhost:7000/users/login",details) // return a cookie and save 
+        const jwt = await httpResponse.text();// get jwt
+        localStorage.setItem('jwt',jwt);
+        console.log(localStorage.getItem('jwt'))
     }
 
 
