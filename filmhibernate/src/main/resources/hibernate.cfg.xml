@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://34.86.126.212:5432/filmDB</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        
+		<property name="hibernate.connection.username">adam</property>
+        <property name="hibernate.connection.password">gatorfan1</property>
+        
+      <!-- <property name="hibernate.hbm2ddl.auto">create-drop</property>  -->
+         <!-- create drop mode will automatically drop and recreate your tables whenever you create a sessionFactory
+         this is entirely a devlopment/testing feature NEVER have this in a completed application -->
+        <property name="hibernate.show_sql">true</property>
+
+        <mapping class="dev.ranieri.entities.Director"></mapping>
+        <mapping class="dev.ranieri.entities.Movie"></mapping>
+
+
+    </session-factory>
+</hibernate-configuration>
