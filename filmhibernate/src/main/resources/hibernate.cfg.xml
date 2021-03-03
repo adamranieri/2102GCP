@@ -18,6 +18,7 @@
 
         <mapping class="dev.ranieri.entities.Director"></mapping>
         <mapping class="dev.ranieri.entities.Movie"></mapping>
+        <mapping class="dev.ranieri.entities.Actor"></mapping>
 
 
     </session-factory>
