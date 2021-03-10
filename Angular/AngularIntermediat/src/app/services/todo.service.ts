@@ -8,6 +8,26 @@ export class TodoService {
 
   todos:ToDo[] = []
 
-  constructor() { }
+  constructor() {}
+
+  markTodoCompleted(todo:ToDo){
+    todo.isComplete =true;
+  }
+
+  getCompletedTodo():ToDo[]{
+    // return this.todos.filter((todo)=>{
+    //     if(todo.isComplete){
+    //       return true
+    //     }else{
+    //       return false;
+    //     }
+    // })
+    return this.todos.filter(todo=>todo.isComplete)
+  }
+
+  getPendingTodo():ToDo[]{
+    return this.todos.filter(todo=>!todo.isComplete)
+  }
+
 
 }

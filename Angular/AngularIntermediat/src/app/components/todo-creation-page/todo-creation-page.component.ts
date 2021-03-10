@@ -21,7 +21,6 @@ export class TodoCreationPageComponent implements OnInit {
     const todo:ToDo = new ToDo(this.description,this.priority,false);
     this.toDoService.todos.push(todo); // add a todo the todos list in the service
     alert("Succesfully created a new ToDo")
-    console.log(this.toDoService.todos)
   }
 
 }

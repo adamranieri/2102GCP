@@ -3,11 +3,11 @@ import { ToDo } from 'src/app/models/todo';
 import { TodoService } from 'src/app/services/todo.service';
 
 @Component({
-  selector: 'app-pending-table',
-  templateUrl: './pending-table.component.html',
-  styleUrls: ['./pending-table.component.css']
+  selector: 'app-completed-table',
+  templateUrl: './completed-table.component.html',
+  styleUrls: ['./completed-table.component.css']
 })
-export class PendingTableComponent implements OnInit {
+export class CompletedTableComponent implements OnInit {
 
   constructor(private todoService:TodoService) { }
 
@@ -18,10 +18,5 @@ export class PendingTableComponent implements OnInit {
     this.todos= this.todoService.todos
   }
 
-  markComplete(todo:ToDo){
-    console.log(todo)
-    todo.isComplete = true;
-    console.log(todo)
-  }
 
 }

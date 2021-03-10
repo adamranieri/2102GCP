@@ -8,6 +8,8 @@ import { TodoDisplayPageComponent } from './components/todo-display-page/todo-di
 import {FormsModule} from '@angular/forms';
 import { PendingTableComponent } from './components/pending-table/pending-table.component'
 import { TodoService } from './services/todo.service';
+import { PriorityPipe } from './pipes/priority.pipe';
+import { CompletedTableComponent } from './components/completed-table/completed-table.component';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { TodoService } from './services/todo.service';
     AppComponent,
     TodoCreationPageComponent,
     TodoDisplayPageComponent,
-    PendingTableComponent
+    PendingTableComponent,
+    PriorityPipe,
+    CompletedTableComponent
   ],
   imports: [
     BrowserModule,

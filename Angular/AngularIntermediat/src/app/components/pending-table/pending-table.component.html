@@ -2,5 +2,11 @@
 
 <table>
     <thead><th>Description</th><th>Priority</th></thead>
-    <tr *ngFor="let todo of todos"><td>{{todo.description}}</td><td>{{todo.priority}}</td></tr>
+    <div *ngFor="let todo of todos">
+    <tr *ngIf="!todo.isComplete">
+        <td>{{todo.description}}</td>
+        <td>{{todo.priority | priority}}</td> 
+        <button (click)="markComplete(todo)">Mark Complete</button>
+    </tr>
+    </div>
 </table>
