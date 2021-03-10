@@ -8,6 +8,7 @@ import dev.ranieri.services.BookService;
 import dev.ranieri.services.BookServiceImpl;
 import io.javalin.http.Handler;
 
+import javax.sound.midi.Soundbank;
 import java.util.Set;
 
 // All the logic in controller should deal with the API
@@ -19,6 +20,7 @@ public class BookController {
 
     public Handler getAllBooksHandler = (ctx) ->{
             String t = ctx.queryParam("titleContains","NONE");// second value is default value
+            System.out.println(t);
             if (t.equals("NONE")){
                 Set<Book> allBooks = this.bookService.getAllBooks();
                 Gson gson = new Gson();

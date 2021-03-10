@@ -12,7 +12,7 @@ import java.util.Set;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class BookDaoTest {
 
-    private static BookDAO bdao = new BookDaoPostgres();
+    private static BookDAO bdao = new BookDaoLocal();
     private static Book testBook = null;
 
     @Test

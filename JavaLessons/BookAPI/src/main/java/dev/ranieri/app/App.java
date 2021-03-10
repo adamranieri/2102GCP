@@ -7,7 +7,12 @@ public class App {
 
     public static void main(String[] args) {
 
-        Javalin app = Javalin.create();
+        Javalin app = Javalin.create(
+                config -> {
+                    config.enableCorsForAllOrigins();//allows the server to process JS anywhere
+
+        }
+        );
 
         BookController bookController = new BookController();
 
