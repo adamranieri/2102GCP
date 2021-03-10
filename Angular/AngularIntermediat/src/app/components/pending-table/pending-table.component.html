@@ -1,0 +1,6 @@
+<h3>Pending ToDos</h3>
+
+<table>
+    <thead><th>Description</th><th>Priority</th></thead>
+    <tr *ngFor="let todo of todos"><td>{{todo.description}}</td><td>{{todo.priority}}</td></tr>
+</table>
