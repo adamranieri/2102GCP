@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+</head>
+<body>
+    <h1>Pokemon viewer</h1>
+    <button onclick="getPokemon()">Get that pokemon!!!</button>
+    <h3>Search by name</h3>
+    <input id="nameInput" type="text">
+    <h4>Abilities</h4>
+    <ul id="abilitiesList">
+
+    </ul>
+    <img id="pokeImage" src="" alt="pokemon">
+    
+</body>
+<script>
+
+    // label the function as async 
+    // lets JS know that there are functions in here that return promises
+    async function getPokemon(){
+        // some functions return a promsise object
+        // a promise object is essenitally an empty object that will eventually hold a value
+        // if you tried to use a promise object immediately it will say <pending> 
+        // the object still contains nothing
+        const nameInput = document.getElementById("nameInput")
+        const name = nameInput.value;
+        const httpResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+        // await can be used to tell JS to pause and wait for the promise to be fulfilled
+        // BEFORE continuing with the remaining code in the function
+        console.log(httpResponse);
+        // HttpResonses actually come in 2 parts
+        // first you get back the headers and status of the http response
+        // then you body of the response is actually sent
+        // almost impossible to notice unless the body is very large
+        const body = await httpResponse.json();// wait for the body to finish loading as well
+
+        let listHtml = ``;
+
+        for(let ability of body.abilities ){
+            const abilityName = ability.ability.name;
+            listHtml += `<li>${abilityName}</li>`
+        }
+
+        const abilitiesList = document.getElementById("abilitiesList");
+        abilitiesList.innerHTML = listHtml;
+
+        const image = document.getElementById("pokeImage");
+        image.src = body.sprites.front_default;
+
+
+        console.log(body.sprites.front_default)
+    }
+    // any async function automatically returns another promise
+
+    function wrapper(){
+        console.log("started")
+        getPokemon();// this is an async function
+        // JS will execute but will not wait for it to finsh before continuing to exectute
+        console.log("end")
+    }
+
+</script>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "greetingapp",
+  "version": "1.0.0",
+  "description": "simple hello world app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "adam ranieri",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mathjs": "^9.2.0"
+  }
+}

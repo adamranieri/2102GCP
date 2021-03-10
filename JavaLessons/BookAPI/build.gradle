@@ -5,16 +5,15 @@ plugins {
 group 'org.example'
 version '1.0-SNAPSHOT'
 
-
+version = '1.0'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-//create a single Jar with all dependencies
 task fatJar(type: Jar) {
     manifest {
         attributes 'Implementation-Title': 'Gradle Jar File Example',
                 'Implementation-Version': version,
-                'Main-Class': 'dev.araga.app.App'
+                'Main-Class': 'dev.ranieri.app.App'
     }
     baseName = project.name + '-all'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
@@ -28,13 +27,16 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-    implementation group: 'io.javalin', name: 'javalin', version: '3.13.3'
+    compile group: 'io.javalin', name: 'javalin', version: '3.13.3'
     compile "org.slf4j:slf4j-simple:1.7.30"
     compile group: 'com.google.code.gson', name: 'gson', version: '2.8.6'
     testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.7.7'
     testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '3.7.7'
     compile group: 'org.postgresql', name: 'postgresql', version: '42.2.18'
     compile group: 'log4j', name: 'log4j', version: '1.2.17'
+    compile group: 'com.auth0', name: 'java-jwt', version: '3.12.1'
+    implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.4.28.Final'
+
 
 }
 

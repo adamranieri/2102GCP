@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Manager</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+      .grid-container {
+  display: grid;
+  grid-template-columns: 0.5fr 1.8fr 0.6fr 1.6fr 0.5fr;
+  grid-template-rows: 0.3fr 2.1fr 0.6fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    ". bookHeading bookHeading bookHeading ."
+    ". bookTable . bookForm ."
+    ". . . . .";
+}
+
+.bookTable { grid-area: bookTable; }
+
+.bookForm { grid-area: bookForm; }
+
+.bookHeading { grid-area: bookHeading; }
+
+
+    </style>
+
+</head>
+<body>
+
+    <div class="grid-container">
+
+
+    <div class="bookHeading">
+    <h1>Community Libray Book Manager</h1>
+    <button onclick="login()">Login honor system for managers</button>
+    </div>  
+
+    <div class="bookTable">
+        <table  class="table table-dark">
+            <thead><th>id</th><th>title</th><th>author</th><th>availability</th></thead>
+            <tbody id="bookTableBody">
+    
+            </tbody>
+        </table>
+    </div>
+
+    <div class="bookForm">
+        <h2>Add a new Book</h2>
+
+        <label for="titleInput">Title</label>
+        <input class="input-group-prepend" placeholder="ex Frankenstien" id="titleInput" type="text">
+        <hr>
+
+        <label for="authorInput">Author</label>
+        <input class="input-group-prepend" placeholder="ex Mary Shelley" id="authorInput" type="text">
+        <hr>
+
+        <label for="conditionInput">Condition</label>
+        <input class="input-group-prepend" placeholder="1-4" id="conditionInput" type="number">
+        <hr>
+
+        <button type="button" class="btn btn-success" onclick="addBook()">Add book</button>
+
+    </div>
+
+    
+    </div>
+    
+</body>
+<script>
+    const bookTableBody = document.getElementById("bookTableBody");
+    const titleInput = document.getElementById("titleInput");
+    const authorInput = document.getElementById("authorInput");
+    const conditionInput = document.getElementById("conditionInput");
+
+
+    getAllBooks();
+
+    async function getAllBooks(){
+        const httpResponse = await fetch("http://localhost:7000/books"); // defaults to get
+        const books = await httpResponse.json();// automatically parses the text into an object
+        let tbodyHtml = ``;
+
+        for(const book of books){
+            tbodyHtml +=   `
+            <tr>
+            <td> ${book.bookId}</td>
+            <td> ${book.title}</td>
+            <td> ${book.author}</td>
+            <td> ${book.available ? "available":"Unavailable"}</td>
+            <td> <button type="button" class="btn btn-outline-danger" onclick="deleteBookById(${book.bookId})">Delete </button></td>
+            </tr>
+            `;
+        }
+
+        bookTableBody.innerHTML = tbodyHtml;
+    }
+
+    async function addBook(){
+
+        const book = {
+            bookId:0,
+            title: titleInput.value,
+            author: authorInput.value,
+            condition: conditionInput.value,
+            returnDate:0,
+            available:true
+        }
+
+        const details ={
+            method:"POST",
+            body: JSON.stringify(book)// JSON to send goes here
+        }
+
+        const httpResponse = await fetch("http://localhost:7000/books",details);
+
+        if(httpResponse.status === 201){
+            alert("Your book was saved correctly")
+            getAllBooks()// refresh my table if I successfully add a book
+        }else{
+            alert("Book was not saved")
+        }
+
+    }
+
+    async function deleteBookById(id = 0){
+        
+        const jwt = localStorage.getItem('jwt');
+        const details = {
+            method:"DELETE",
+            headers:{
+                "Authorization": jwt
+            }
+        }
+
+        const httpResponse = await fetch(`http://localhost:7000/books/${id}`,details)
+        getAllBooks();
+
+    }
+
+    async function login(){
+
+        const details ={
+            method: 'POST'
+        }
+        
+        const httpResponse = await fetch("http://localhost:7000/users/login",details) // return a cookie and save 
+        const jwt = await httpResponse.text();// get jwt
+        localStorage.setItem('jwt',jwt);
+        console.log(localStorage.getItem('jwt'))
+    }
+
+
+
+</script>
+</html>

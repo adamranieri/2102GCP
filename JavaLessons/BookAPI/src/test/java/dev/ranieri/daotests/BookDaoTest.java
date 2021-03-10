@@ -1,6 +1,7 @@
 package dev.ranieri.daotests;
 
 import dev.ranieri.daos.BookDAO;
+import dev.ranieri.daos.BookDaoHibernate;
 import dev.ranieri.daos.BookDaoLocal;
 import dev.ranieri.daos.BookDaoPostgres;
 import dev.ranieri.entities.Book;
@@ -12,7 +13,7 @@ import java.util.Set;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class BookDaoTest {
 
-    private static BookDAO bdao = new BookDaoLocal();
+    private static BookDAO bdao = new BookDaoHibernate();
     private static Book testBook = null;
 
     @Test

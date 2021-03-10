@@ -1,11 +1,13 @@
 package dev.ranieri.controllers;
 
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.google.gson.Gson;
 import dev.ranieri.daos.BookDaoLocal;
 import dev.ranieri.daos.BookDaoPostgres;
 import dev.ranieri.entities.Book;
 import dev.ranieri.services.BookService;
 import dev.ranieri.services.BookServiceImpl;
+import dev.ranieri.utils.JwtUtil;
 import io.javalin.http.Handler;
 
 import javax.sound.midi.Soundbank;
@@ -40,6 +42,7 @@ public class BookController {
     public Handler getBookByIdHandler = (ctx) ->{
         int id = Integer.parseInt(ctx.pathParam("id"));
         Book book = this.bookService.getBookById(id);
+
         if(book == null){
             ctx.result("Book not found");
             ctx.status(404);
@@ -75,12 +78,30 @@ public class BookController {
 
     public Handler deleteBookHandler = (ctx) ->{
         int id = Integer.parseInt(ctx.pathParam("id"));
-        boolean deleted = this.bookService.deleteBookById(id);
-        if(deleted){
-            ctx.result("Book was deleted");
-        }else{
-            ctx.result("Oh no could not delete");
+
+        try {
+            String jwt = ctx.header("Authorization");
+            DecodedJWT decodedJWT = JwtUtil.isValidJWT(jwt); // returns decodeJWT or throws an exception
+            if(decodedJWT.getClaim("role").asString().equals("Manager")){
+                boolean deleted = this.bookService.deleteBookById(id);
+                if(deleted){
+                    ctx.result("Book was deleted");
+                }else{
+                    ctx.result("Oh no could not delete");
+                }
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+            ctx.status(403);
+            ctx.result("Missing authorization or improper token");
         }
+
+
+
+
+
+
     };
 
 }

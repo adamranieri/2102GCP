@@ -1,5 +1,7 @@
 package dev.ranieri.entities;
 
+import javax.persistence.*;
+
 // An entity is a class/object that is designed to be saved/persisted somewhere
 // Their job is to hold information
 // The fields in an entity usually have a 1-1 match to a column in a SQL database
@@ -9,13 +11,28 @@ package dev.ranieri.entities;
 // 2. you must have public getters and setters
 // 3. you need to have a no arguments (You can have more constructors)
 // 4. Technically you are supposed implement serializable
+@Entity
+@Table(name= "book") // whatever the table name is in the database
 public class Book {
 
+    @Id // this will mark the field as the primary key for the object
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // let hibernate know how this field is populated
+    @Column(name ="book_id")
     private int bookId; // primary key (Every book has a unique id)
+
+    @Column(name ="title")
     private String title;
+
+    @Column(name ="author")
     private String author;
+
+    @Column(name ="book_condition")
     private int condition; // 1 = like new, 2 = used, 3 = worn down, 4= unusuable/lost
+
+    @Column(name ="available")
     private boolean available; // true = in the library, false = someone checked it out if the book is checked out or not
+
+    @Column(name ="return_date")
     private long returnDate; // DO NOT USE the DATE class in a programming
     // dates are best stored as seconds from 1970 jan 1 midnight (unix epoch)
     public Book() {

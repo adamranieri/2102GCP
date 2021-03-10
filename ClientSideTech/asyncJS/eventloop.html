@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event loop</title>
+</head>
+<body>
+
+    <button onclick="hello()">Hello</button>
+
+    <button onclick="hola()">Hola</button>
+
+    <button onclick="delay()">Delay</button>
+
+</body>
+<script>
+
+    function hello(){
+        console.log("hello")
+    }
+
+    function hola(){
+        console.log("hola")
+    }
+
+    function delay(){
+        console.log("started really long loop =(")
+
+        for(let i = 0; i <10000000000;i++){
+
+        }
+
+    }
+
+
+</script>
+</html>

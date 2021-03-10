@@ -1,0 +1,13 @@
+<h1>ToDo creation page</h1>
+<p>Add todos here!!!!</p>
+
+<label for="descriptionInput">Description</label>
+<input id="descriptionInput" type="text" [(ngModel)] = "description">
+
+<label for="priorityInput">Priority</label>
+<input id="priorityInput" type="number" [(ngModel)]="priority">
+
+<button (click)="createToDo()">Create ToDo</button>
+<a routerLink="/display" routerLinkActive="display">Display Todo</a>
+
+
