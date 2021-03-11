@@ -1,0 +1,16 @@
+
+<h4>Books At The library</h4>
+<table>
+    <thead><th>ID</th><th>title</th><th>Author</th><th>Conditon</th><th>Checkout Status</th><th>Return Date</th></thead>
+    <tbody>
+        <tr *ngFor ="let book of books">
+            <td>{{book.bookId}}</td>
+            <td>{{book.title}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.condition}}</td>
+            <td>{{book.available}}</td>
+            <td>{{book.returnDate}}</td>
+        </tr>
+    </tbody>
+</table>
+<button (click)="refreshBooks()">Get All books</button>

@@ -1,0 +1,19 @@
+<div>
+<h3>Create a book</h3>
+
+<!-- <label for="titleInput">Title</label>
+<input id="titleInput" type="text" [(ngModel)]="title"> -->
+<mat-form-field >
+    <mat-label>Title</mat-label>
+    <input matInput placeholder="Alice in Wonderland" [(ngModel)]="title">
+</mat-form-field>
+
+
+<label for="authorInput">Author</label>
+<input id="authorInput" type="text" [(ngModel)]="author">
+
+<label for="conditonInput">Conditon</label>
+<input id="conditonInput" type="number" [(ngModel)]="condition">
+
+<button mat-raised-button color="accent" (click)="createBook()">Create</button>
+</div>
