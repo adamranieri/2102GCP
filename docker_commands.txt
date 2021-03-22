@@ -1,0 +1,12 @@
+docker build -t imagename .
+(run in the directory that contains the docker file)
+
+docker images 
+gets all images on the computer
+
+docker ps
+get all containers on the computer
+
+docker kill containerid
+
+docker run -p portyouwanttoccessiton:actualportofapplication imagename
