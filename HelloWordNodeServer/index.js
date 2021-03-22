@@ -5,7 +5,7 @@ const mathjs = require("mathjs")
 const app = express();
 
 app.get("/hello",(req,res)=>{
-    res.send("Hello")
+    res.send("Hello from node")
 })
 
 app.listen(3000,()=>{console.log("App up and running")});
