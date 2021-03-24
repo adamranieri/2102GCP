@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: loanapplication
+  cloud:
+    consul:
+      discovery:
+        instanceId: ${spring.application.name}proto1
+        healthCheckPath: /health
+
+server:
+  port: 8081

@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: loadcrud
+  cloud:
+    consul:
+      discovery:
+        instanceId: ${spring.application.name} v1
+        healthCheckPath: /health

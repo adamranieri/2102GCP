@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: loadcrud
+  cloud:
+    consul:
+      discovery:
+        instanceId: ${spring.application.name} v2
+        healthCheckPath: /health
+server:
+  port: 9090
