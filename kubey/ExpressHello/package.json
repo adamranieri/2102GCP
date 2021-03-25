@@ -1,0 +1,16 @@
+{
+  "name": "expresshello",
+  "version": "1.0.0",
+  "description": "a small app designed to say hello and return the ip address of the application",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "adam ranieri",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "ip": "^1.1.5"
+  }
+}

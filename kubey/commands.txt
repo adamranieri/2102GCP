@@ -1,0 +1,9 @@
+kubectl create -f .\helloapp-deployment.yaml
+kubectl create -f .\loadbalancer-service.yaml
+
+kubectl get deployments
+kubectl get services
+
+kubectl delete service loadbalancer-service 
+kubectl delete deployment hello-world-deployment
+https://images.app.goo.gl/qNMjgUzcg3kKg7ha8

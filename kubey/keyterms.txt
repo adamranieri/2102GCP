@@ -1,0 +1,39 @@
+node - straight up a computer (Kubenetes thinks its cool to call them nodes)
+
+Kubernetes cluster- a master kubernetes node and the nodes it controls
+
+Kubernetes control plane - a restful api server 
+	(can also be interacted with via the command line if logged in to computer)
+
+Kubelet - the kubernetes software on a sub node that connect that node to the control plane
+
+===========================================================================
+Kubernetes objects
+
+Pod - an atomic piece of software. a pod is made of one or more containers.
+
+Deployement - a configuration/formation of pods. 
+	can indclude things like envrionment variables how many instances of each pod you want. when to create pods etc... 
+
+
+service - allows you to access the pods on a cluster
+	pods are NOT accessible from outside the cluster
+
+Load balancer: A type of service
+
+
+===========================================================================
+
+Kubernetes is Declarative by design
+	
+You list what you want. Kubernetes makes it a reality and will shuffle around resources if
+pods fail.
+
+==========================================================================
+
+Kubernetes makes deployment more "code based". Can greatly simplify maitnence of complex deployments 
+kubernetes was invented by Google and is part of their philosophy that deployment is part of software development
+
+
+
+
